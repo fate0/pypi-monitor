@@ -185,3 +185,8 @@ def unpatch():
 
     if hasattr(_socket, 'socket_'):
         _socket.socket = _socket.SocketType = _socket.socket_
+
+    if hasattr(distutils.spawn, 'spawn_'):
+        distutils.spawn.spawn = distutils.spawn.spawn_
+        distutils.util.spawn = distutils.spawn.spawn_
+        distutils.ccompiler.spawn = distutils.spawn.spawn_
