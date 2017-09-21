@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import sys
 import monkey
 
@@ -9,8 +10,12 @@ import pip.req.req_install
 import pip.utils.setuptools_build
 
 
+cur_dir = os.path.realpath(os.path.dirname(__file__))
+
+
 # Shim to wrap setup.py invocation with setuptools
 SETUPTOOLS_SHIM = (
+    "import sys;sys.path.append(%r);" % cur_dir +
     "import setuptools, tokenize;__file__=%r;" +
     "import monkey; monkey.patch(%r);"
     "f=getattr(tokenize, 'open', open)(__file__);"
